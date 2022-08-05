@@ -1,9 +1,9 @@
 
 Salut les amis, aujourd'hui nous allons parler des **extensions** en python. Oui des **extensions** car, même si une instruction est syntaxiquement correcte, elle peut générer une erreur lors de son exécution **(exemple la division par 0, accés a un fichier qui n'existe pas, etc).** Les erreurs détectées durant l'exécution sont appelées des exceptions et ne sont pas toujours fatales: nous appredrendrons ici à comment les traiter dans vos programmes. Tout au long de ce tutoriel nous allons:
 
- 1. montrer l'utilisation des blocs try-except, 
- 2. l'uttilisation des clauses *else* et *finally* dans une exception
- 3. montrer comment un uttilisateur peut déclencher une exception
+  1. montrer l'utilisation des blocs try-except, 
+  2. l'uttilisation des clauses *else* et *finally* dans une exception
+  3. montrer comment un uttilisateur peut déclencher une exception
 
   
 
@@ -20,6 +20,8 @@ Mais, le langage python offre les possibilités au programmeur de contrôler les
 
 un bloc **try** doit être accompagné d'au moins un bloc except. Plusieurs blocs except peuvent être associés à un même bloc **try**. Ainsi, un ensemble **try-except** s'ecrira de la forme:
 
+
+
 ```{r echo = TRUE, warning = FALSE}
 try:
     instructions
@@ -28,13 +30,16 @@ except ErrorType1:
 except ErrorType2:
     instructions si ErrorType2
 except (ErrorType3, ErrorType4)
-    instructions si autre erreur```
+    instructions si autre erreur
+```
 
 
 
 
-**NB:** il existe 03 manières d'ecrire la ligne except:
 
+
+
+**_NB:_** il existe 03 manières d'ecrire la ligne except:
  1. En indiquant le nom de l'erreur concernée. exemple: except Error:
  2. En indiquant un tuple contenant plusieurs erreur. Exemple: except (Error1, ..., Errorn):
  3. En n'indiquant rien. Exemple: except:
@@ -42,7 +47,7 @@ except (ErrorType3, ErrorType4)
 
 ### 1. Indiquant le nom de l'erreur
 
-**Petit exemple**: Demandons à l'utilisateur de saisir des valeurs et lui redemander une nouvelle fois la saisie afin qu'il entre une nouvelle valeur convenable.
+**_Petit exemple_**: Demandons à l'utilisateur de saisir des valeurs et lui redemander une nouvelle fois la saisie afin qu'il entre une nouvelle valeur convenable.
 
 
 ```{r echo = TRUE, warning = FALSE}
@@ -50,7 +55,8 @@ try:
     val = float(input('Veuillez saisir un nombre :'))
 except ValueError:
     print('La nouvellee entrée n'est pas valide')
-    val = float(input('Veuillez recommencez s'il vous plait:'))```
+    val = float(input('Veuillez recommencez s'il vous plait:'))
+```
  
 **Autre exemple** Dans cet exemple, essayons d'ouvrir un fichier en uttilisant la fonction **open()**. si le fichier n'est pas trouvé au chemin indiqué la fonction envoie une exception de type **IOError**. la gestion de cette exception permet l'affichage d'un message adéquat:
 
@@ -61,20 +67,17 @@ try:
     myFichier = open(nomFichier)
 except IOError:
     print("Erreur de lecture du fichier")
-    sys.exit()```
+    sys.exit()
+```
 
-
-Remarque: Il est également possible pour le programmeur de déclencher explitement une exception grâce à l'instruction **raise** <Nom d'une Exception>, et aussi il est possible de définir de nouvelles pour des exceptions particuliers
+**Remarque**: Il est également possible pour le programmeur de déclencher explitement une exception grâce à l'instruction **raise** <Nom d'une Exception>, et aussi il est possible de définir de nouvelles pour des exceptions particuliers
 
 ### 2. En indiquent un tuple d'erreur
 
-
-**Exemple:**
-
-
 ### 3. En indiquant rien
 
-**Dernier exemple**: Utilisation de l'instruction except avec l'instruction pass
+**exemple**: Utilisation de l'instruction except avec l'instruction pass
+
 Soit la liste x suivante:
 
 x = ['North', '6.47', '4.03', 'Yorkshire', '6.13', '3.76', 'Northeast',
@@ -162,7 +165,8 @@ def inverseFunction(x):
         print ("division par zéro")
     except Exception as exc:
         print ("erreur inprévue : ", exc.__class__)
-        print ("message", exc)```
+        print ("message", exc)
+```
 
 Il est également possible d'associer une variable à l'erreur générale c'est à dire stocker l'erreur dans une variable, afin de la manipuler et d'obtenir des informations plus précises: la variable spécifiée dans la ligne except est alors associée à l'éxception qui a été levée. il est possible d'accéder aux attributs et aux arguments de l'execption concernée. Exemple:
 
@@ -174,14 +178,4 @@ except Exception as error:
     print(error.args)
 ```
 
-
-
-
-
-
-# Ressources
-
-
-1. [https://gayerie.dev/docs/python/python3/exception.html](https://gayerie.dev/docs/python/python3/exception.html "Optional link title")
-2. [https://docs.python.org/fr/3/tutorial/errors.html](https://docs.python.org/fr/3/tutorial/errors.html "Documentation python")
-3. [https://www.data-transitionnumerique.com/python-try-except/](https://www.data-transitionnumerique.com/python-try-except/ "python")
+![le logo de Framasoft](https://framasoft.org/nav/img/logo.png)
