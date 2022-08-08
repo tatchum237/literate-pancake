@@ -1,24 +1,26 @@
 
-Salut les amis, aujourd'hui nous allons parler des **extensions** en python. Oui des **extensions** car, même si une instruction est syntaxiquement correcte, elle peut générer une erreur lors de son exécution **(exemple la division par 0, accés a un fichier qui n'existe pas, etc).** Les erreurs détectées durant l'exécution sont appelées des exceptions et ne sont pas toujours fatales: nous appredrendrons ici à comment les traiter dans vos programmes. Tout au long de ce tutoriel nous allons:
+
+
+Salut les amis, aujourd'hui nous allons parler des **exception** en python. Oui des **exception** car, même si une instruction est syntaxiquement correcte, elle peut générer une erreur lors de son exécution **(exemple la division par 0, accés a un fichier qui n'existe pas, etc).** Les erreurs détectées durant l'exécution sont appelées des exceptions et ne sont pas toujours fatales: nous appredrendrons ici à comment les traiter dans vos programmes. Tout au long de ce tutoriel nous allons:
 
   1. montrer l'utilisation des blocs try-except, 
-  2. l'uttilisation des clauses *else* et *finally* dans une exception
-  3. montrer comment un uttilisateur peut déclencher une exception
+  2. l'utilisation des clauses *else* et *finally* dans une exception
+  3. montrer comment un utilisateur peut déclencher une exception
 
   
 
 ## A. Utilisation des blocs try-exception
 
-Lors de l'appel d'une fonction, l'interpreteur Python peut rencontrer des qu'il n'est pas en mesure d'executer. Dans ces cas, il jette une exception et renvoie un message d'erreur. Par exemple, soit l'instruction définie comme suit:
+Lors de l'appel d'une fonction, l'interpreteur Python peut rencontrer des problémes qu'il n'est pas en mesure d'executer. Dans ces cas, il jette une exception et renvoie un message d'erreur. Par exemple, soit l'instruction définie comme suite:
 
  `val = int(input('Veuillez saisir un nombre entier'))`
 
 Dans cette instruction on demande à l'utilisateur de saisir un nombre entier. Et supponsons un seul instant qu'il saisisse des chaînes de caractères contenant des valeurs alphabétiques ou des caractéres spéciaux; eh bien **Python** enverra un message d'erreur de type *«ValueError: could not
 convert string to int… »* car la fonction **int()** ne permet de convertir que des chaînes constituer des valeurs en chiffres. Dans cette situation, on est face à une exception. Si cette exception n'est pas gérée par le programme dont l'instruction fait partie, le resultat est l'arrêt du programme avec affichage d'un message d'erreur. 
 
-Mais, le langage python offre les possibilités au programmeur de contrôler les instructions pouvant générer des exceptions et de définir ses propres traitements d'erreur. Ces traitements sont basés sur l'utilisation **« try »** et **« except »**  qui figurent également parmi les *33* mots réservés de python. Les instructions susceptibles de générer des exceptions sont placées à l'interieur d'un bloc **try »** et les instructions à exécuter en cas d'exceptions sont définies à l'intérieur d'un bloc **except »**. 
+Mais, le langage python offre les possibilités au programmeur de contrôler les instructions pouvant générer des exceptions et de définir ses propres traitements d'erreur. Ces traitements sont basés sur l'utilisation **« try »** et **« except »**  qui figurent également parmi les *33* mots réservés de python. Les instructions susceptibles de générer des exceptions sont placées à l'interieur d'un bloc **« try »** et les instructions à exécuter en cas d'exceptions sont définies à l'intérieur d'un bloc **« except »**. 
 
-un bloc **try** doit être accompagné d'au moins un bloc except. Plusieurs blocs except peuvent être associés à un même bloc **try**. Ainsi, un ensemble **try-except** s'ecrira de la forme:
+un bloc **try** doit être accompagné d'au moins un bloc **except**. Plusieurs blocs except peuvent être associés à un même bloc **try**. Ainsi, un ensemble **try-except** s'ecrira de la forme:
 
 
 
@@ -70,9 +72,21 @@ except IOError:
     sys.exit()
 ```
 
-**Remarque**: Il est également possible pour le programmeur de déclencher explitement une exception grâce à l'instruction **raise** <Nom d'une Exception>, et aussi il est possible de définir de nouvelles pour des exceptions particuliers
+**Remarque**: Il est également possible pour le programmeur de déclencher explitement une exception grâce à l'instruction **raise** «Nom d'une Exception», et aussi il est possible de définir de nouvelles pour des exceptions particuliers
 
 ### 2. En indiquent un tuple d'erreur
+
+Une clause except peut nommer plusieurs exceptions sous la forme d'un tuple entre parenthéses.
+
+```{r echo = TRUE, warning = FALSE}
+try:
+    instructions
+except(ErrorType1, ErrorType2, ErrorType3):
+    instructions si ErrorType1 ou ErrorType2 ou ErrorType3
+
+```
+
+
 
 ### 3. En indiquant rien
 
@@ -95,12 +109,12 @@ for i in range(len(x) ):
 
 l'instruction pass permet de continuer la boucle lorsqu'une chaine de caractére non convertible esr rencontrée.
 
-L'instruction **<< pass >>** est trés proche des instructions **<< break >>** et **<< continue >>**
+L'instruction **« pass »** est trés proche des instructions **« break »** et **« continue »**
 
 
 ## B. Utilisation des clause else et finally dans une exception
 
- Au même titre que pour les clauses **<< if >>**, il est possible d"adjoindre un bloc **<< else >>** aux blocks de gestion d'exceptions: ce dernier ne sera alors exécuté que si aucune exception n'a été levée. Par ailleurs, il est aussi possible d'ajouter un block **<< finally >>** à la definition d'une exception. les instructions de ce dernier bloc seront exécutées qu'il y'ait des exceptions ou pas (par exemple instruction à executer pour fermer un fichier ouvert par des instructions try). L'exemple ci-dessous illustre des clauses else et filanlly.
+ Au même titre que pour les clauses **« if »**, il est possible d'adjoindre un bloc **« else »** aux blocks de gestion d'exceptions: ce dernier ne sera alors exécuté que si aucune exception n'a été levée. Par ailleurs, il est aussi possible d'ajouter un block **« finally »** à la definition d'une exception. les instructions de ce dernier bloc seront exécutées qu'il y'ait des exceptions ou pas (par exemple instruction à executer pour fermer un fichier ouvert par des instructions try). L'exemple ci-dessous illustre des clauses else et finally.
 
 
 
@@ -115,7 +129,7 @@ finally:
     print('Ce texte sera toujours imprimé')
 ```
 
-Comme signalé précédemment, le bloc else est exécuté quand l'exception ne produit se produit pas c'est à dire lorsque le bloc try fonctionne correctement Quant au bloc finally, il sera toujours exécuté, même si un return, break ou continue intervient dans le code avant l'instruction finally. Exemple: except
+Comme signalé précédemment, le bloc else est exécuté quand l'exception ne se produit pas c'est à dire lorsque le bloc try fonctionne correctement Quant au bloc finally, il sera toujours exécuté, même si un return, break ou continue intervient dans le code avant l'instruction finally. Exemple: except
 
 ```{r echo = TRUE, warning = FALSE}
 def myFunction():
@@ -178,4 +192,20 @@ except Exception as error:
     print(error.args)
 ```
 
+## resources
+
+1. [https://docs.python.org/3/tutorial/errors.html](https://docs.python.org/3/tutorial/errors.html "Optional link title").
+
+2. [https://www.codingem.com/try-catch-in-python/](https://www.codingem.com/try-catch-in-python/ "Optional link title").
+
+
+
+## références
+
+1. Erich Gamma, Object-Oriented Software Development based on ET++, (in German) (Springer-Verlag, Berlin, 1992).
+2. Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides, Design Patterns, Elements of Reusable Object-Oriented Software (Reading, MA: Addison-Wesley, 1995).
+
 ![le logo de Framasoft](https://framasoft.org/nav/img/logo.png)
+
+
+
